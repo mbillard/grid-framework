@@ -58,6 +58,18 @@ body {
 
   white-space: nowrap;
   overflow: hidden;
+
+  .row-gutter & {
+    background: 0;
+    border: 0;
+    padding: 0;
+
+    .inner {
+      border: solid 1px #fe4365;
+      background-color: #fc9d9a;
+      padding: 0.5rem;
+    }
+  }
 }
 
 .breakpoints {

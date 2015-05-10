@@ -15,9 +15,7 @@ $breakpoint-lg: 1200px;
 //
 // Rows contain and clear the floats of your columns.
 
-.row {
-  @include make-row;
-}
+@include make-rows;
 
 // Grid
 //

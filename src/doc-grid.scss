@@ -7,9 +7,7 @@
 @import "../_sass/variables";
 @import "grid-framework";
 
-.row {
-  @include make-row;
-}
+@include make-rows;
 
 @include make-grid(3, 'xs', 'offset' 'push' 'pull');
 
