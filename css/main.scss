@@ -3,6 +3,11 @@
 ---
 @charset "utf-8";
 
+$breakpoint-xs: 480px !default;
+$breakpoint-sm: 768px !default;
+$breakpoint-md: 992px !default;
+$breakpoint-lg: 1200px !default;
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "syntax-highlighting";
 
@@ -16,15 +21,74 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-size: 16px;
+  background-color: #fafafa;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+@media (min-width: $breakpoint-md) {
+  .container {
+    width: $breakpoint-md;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .row {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
-.col-content {
+[class*=col-] {
   border: solid 1px #fe4365;
   background-color: #fc9d9a;
   padding: 0.5rem;
   text-align: center;
+}
+
+.breakpoints {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0;
+  margin: 0;
+
+  text-align: center;
+
+  z-index: 100;
+}
+
+.breakpoint {
+  display: none;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  text-align: center;
+
+  background-color: #dfebe6;
+  border: solid 1px #83af9b;
+}
+@media (max-width: $breakpoint-sm - 1) {
+  .breakpoint-xs {
+    display: inline-block;
+  }
+}
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md - 1) {
+  .breakpoint-sm {
+    display: inline-block;
+  }
+}
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg - 1) {
+  .breakpoint-md {
+    display: inline-block;
+  }
+}
+@media (min-width: $breakpoint-lg) {
+  .breakpoint-lg {
+    display: inline-block;
+  }
 }

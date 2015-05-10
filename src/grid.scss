@@ -86,6 +86,8 @@ $grid-gutter-width: 30px;
 
 // Create grid for specific class
 @mixin make-grid($nb-columns-list, $bp) {
+  @include make-generic-columns($nb-columns-list, $bp);
+
   @each $nb-columns in $nb-columns-list {
     @include float-grid-columns($nb-columns, $bp);
     @include loop-grid-columns($nb-columns, $bp, 'width');
@@ -144,14 +146,6 @@ $grid-gutter-width: 30px;
 }
 
 
-// Columns
-//
-// Common styles for small and large grid columns
-
-@include make-generic-columns(5 12, 'xs' 'sm');
-@include make-generic-columns(24, 'sm');
-
-
 // Grid
 //
 // Columns, offsets, pushes, and pulls
@@ -160,4 +154,12 @@ $grid-gutter-width: 30px;
 
 @media (min-width: $breakpoint-sm) {
   @include make-grid(5 12 24, 'sm');
+}
+
+@media (min-width: $breakpoint-md) {
+  @include make-grid(24, 'md');
+}
+
+@media (min-width: $breakpoint-lg) {
+  @include make-grid(24, 'lg');
 }
