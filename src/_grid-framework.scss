@@ -20,27 +20,38 @@ $gf-gutter-width: 30px !default;
 
 
 // ------------------------------------------
+// Grid framework functions
+// ------------------------------------------
+
+@function bp-class($bp) {
+  @if ($bp == "") {
+    @return "";
+  } @else {
+    @return "-#{$bp}";
+  }
+}
+
+
+// ------------------------------------------
 // Grid framework mixins
 // ------------------------------------------
 
-@mixin common-columns-style($nb-columns-list, $breakpoints) {
+@mixin common-columns-style($nb-columns-list, $bp) {
   @each $nb-columns in $nb-columns-list {
-    @each $bp in $breakpoints {
-      $list: ".#{$gf-prefix}-#{$bp}-1-#{$nb-columns}";
-      @for $i from 2 through $nb-columns {
-        $list: "#{$list}, .#{$gf-prefix}-#{$bp}-#{$i}-#{$nb-columns}"
-      }
-      #{$list} {
-        @extend %gf-col;
-      }
+    $list: ".#{$gf-prefix}#{bp-class($bp)}-1-#{$nb-columns}";
+    @for $i from 2 through $nb-columns {
+      $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{$i}-#{$nb-columns}"
+    }
+    #{$list} {
+      @extend %gf-col;
     }
   }
 }
 
 @mixin float-columns($nb-columns, $bp) {
-  $list: ".#{$gf-prefix}-#{$bp}-1-#{$nb-columns}";
+  $list: ".#{$gf-prefix}#{bp-class($bp)}-1-#{$nb-columns}";
   @for $i from 2 through $nb-columns {
-    $list: "#{$list}, .#{$gf-prefix}-#{$bp}-#{$i}-#{$nb-columns}";
+    $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{$i}-#{$nb-columns}";
   }
   #{$list} {
     float: left;
@@ -48,24 +59,24 @@ $gf-gutter-width: 30px !default;
 }
 
 @mixin make-column($index, $nb-columns, $bp) {
-  .#{$gf-prefix}-#{$bp}-#{$index}-#{$nb-columns} {
+  .#{$gf-prefix}#{bp-class($bp)}-#{$index}-#{$nb-columns} {
     width: percentage($index / $nb-columns);
   }
 }
 
 @mixin make-column-offset($index, $nb-columns, $bp) {
-  .#{$gf-prefix}-offset-#{$bp}-#{$index}-#{$nb-columns} {
+  .#{$gf-prefix}-offset#{bp-class($bp)}-#{$index}-#{$nb-columns} {
     margin-left: percentage($index / $nb-columns);
   }
 }
 
 @mixin make-column-push($index, $nb-columns, $bp) {
   @if ($index == 0) {
-    .#{$gf-prefix}-push-#{$bp}-0 {
+    .#{$gf-prefix}-push#{bp-class($bp)}-0 {
       left: auto;
     }
   } @else {
-    .#{$gf-prefix}-push-#{$bp}-#{$index}-#{$nb-columns} {
+    .#{$gf-prefix}-push#{bp-class($bp)}-#{$index}-#{$nb-columns} {
       left: percentage($index / $nb-columns);
     }
   }
@@ -73,11 +84,11 @@ $gf-gutter-width: 30px !default;
 
 @mixin make-column-pull($index, $nb-columns, $bp) {
   @if ($index == 0) {
-    .#{$gf-prefix}-pull-#{$bp}-0 {
+    .#{$gf-prefix}-pull#{bp-class($bp)}-0 {
       right: auto;
     }
   } @else {
-    .#{$gf-prefix}-pull-#{$bp}-#{$index}-#{$nb-columns} {
+    .#{$gf-prefix}-pull#{bp-class($bp)}-#{$index}-#{$nb-columns} {
       right: percentage($index / $nb-columns);
     }
   }
