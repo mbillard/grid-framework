@@ -1,0 +1,163 @@
+@import "mixins";
+
+$breakpoint-xs: 480px !default;
+$breakpoint-sm: 768px !default;
+$breakpoint-md: 992px !default;
+$breakpoint-lg: 1200px !default;
+$grid-gutter-width: 30px;
+
+// ------------------------------------------
+// Grid framework mixins
+// ------------------------------------------
+
+%col {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
+}
+
+@mixin make-generic-columns($nb-columns-list, $breakpoints) {
+  @each $nb-columns in $nb-columns-list {
+    @each $bp in $breakpoints {
+      $list: ".col-#{$bp}-1-#{$nb-columns}";
+      @for $i from 2 through $nb-columns {
+        $list: "#{$list}, .col-#{$bp}-#{$i}-#{$nb-columns}"
+      }
+      #{$list} {
+        @extend %col;
+      }
+    }
+  }
+}
+
+
+@mixin float-grid-columns($nb-columns, $bp) {
+  $list: ".col-#{$bp}-1-#{$nb-columns}";
+  @for $i from 2 through $nb-columns {
+    $list: "#{$list}, .col-#{$bp}-#{$i}-#{$nb-columns}";
+  }
+  #{$list} {
+   float: left;
+  }
+}
+
+@mixin calc-grid-column($index, $nb-columns, $bp, $type) {
+  @if ($type == 'width') and ($index > 0) {
+    .col-#{$bp}-#{$index}-#{$nb-columns} {
+      width: percentage(($index / $nb-columns));
+    }
+  }
+  @if ($type == 'push') and ($index > 0) {
+    .col-push-#{$bp}-#{$index}-#{$nb-columns} {
+      left: percentage(($index / $nb-columns));
+    }
+  }
+  @if ($type == 'push') and ($index == 0) {
+    .col-push-#{$bp}-0 {
+      left: auto;
+    }
+  }
+  @if ($type == 'pull') and ($index > 0) {
+    .col-pull-#{$bp}-#{$index}-#{$nb-columns} {
+      right: percentage(($index / $nb-columns));
+    }
+  }
+  @if ($type == 'pull') and ($index == 0) {
+    .col-pull-#{$bp}-0 {
+      right: auto;
+    }
+  }
+  @if ($type == 'offset') {
+    .col-offset-#{$bp}-#{$index}-#{$nb-columns} {
+      margin-left: percentage(($index / $nb-columns));
+    }
+  }
+}
+
+@mixin loop-grid-columns($nb-columns, $bp, $type) {
+  @for $i from 0 through $nb-columns {
+    @include calc-grid-column($i, $nb-columns, $bp, $type);
+  }
+}
+
+
+// Create grid for specific class
+@mixin make-grid($nb-columns-list, $bp) {
+  @each $nb-columns in $nb-columns-list {
+    @include float-grid-columns($nb-columns, $bp);
+    @include loop-grid-columns($nb-columns, $bp, 'width');
+    // @include loop-grid-columns($nb-columns, 'pull');
+    // @include loop-grid-columns($nb-columns, 'push');
+    // @include loop-grid-columns($nb-columns, 'offset');
+  }
+}
+
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+  margin-left:  ($gutter / -2);
+  margin-right: ($gutter / -2);
+
+  @include clearfix;
+}
+
+// ----------------------------------------
+// Semantic grid mixins
+// ----------------------------------------
+
+// @mixin make-column($span, $nb-columns, $size, $bp, $gutter: $grid-gutter-width) {
+//   position: relative;
+//   float: left;
+//   width: percentage(($span / $nb-columns));
+//   min-height: 1px;
+//   padding-left:  ($gutter / 2);
+//   padding-right: ($gutter / 2);
+
+//   @media (min-width: $bp) {
+//     float: left;
+//     width: percentage(($span / $nb-columns));
+//   }
+// }
+// @mixin make-xs-column-offset($columns) {
+//   margin-left: percentage(($columns / $grid-columns));
+// }
+// @mixin make-xs-column-push($columns) {
+//   left: percentage(($columns / $grid-columns));
+// }
+// @mixin make-xs-column-pull($columns) {
+//   right: percentage(($columns / $grid-columns));
+// }
+
+// ----------------------
+// Grid system
+// ----------------------
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+  @include make-row;
+}
+
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@include make-generic-columns(5 12, 'xs' 'sm');
+@include make-generic-columns(24, 'sm');
+
+
+// Grid
+//
+// Columns, offsets, pushes, and pulls
+
+@include make-grid(5 12, 'xs');
+
+@media (min-width: $breakpoint-sm) {
+  @include make-grid(5 12 24, 'sm');
+}
