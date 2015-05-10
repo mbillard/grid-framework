@@ -34,15 +34,23 @@ body {
   }
 }
 
+code {
+  font-family: "Source Code Pro", monospace;
+}
+
 .row {
   margin-bottom: 1rem;
 }
 
 [class*=col-] {
+  font-family: "Source Code Pro", monospace;
   border: solid 1px #fe4365;
   background-color: #fc9d9a;
   padding: 0.5rem;
   text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .breakpoints {
