@@ -34,8 +34,15 @@ body {
   }
 }
 
-code {
+.highlight {
   font-family: "Source Code Pro", monospace;
+  background: #dedede;
+  border: solid 1px #999;
+  margin-bottom: 1rem;
+
+  pre {
+    margin: 1rem;
+  }
 }
 
 .row {
