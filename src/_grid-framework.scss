@@ -1,6 +1,7 @@
-$gf-prefix:       'col' !default;
-$gf-row-prefix:   'row' !default;
+$gf-prefix: 'col' !default;
+$gf-row-prefix: 'row' !default;
 $gf-gutter-width: 30px !default;
+$gf-smart-class-names: false !default;
 
 // ------------------------------------------
 // Grid framework extendable classes
@@ -31,6 +32,15 @@ $gf-gutter-width: 30px !default;
   }
 }
 
+@function x-of-y-class($x, $y) {
+  @if ($x == 0) {
+    @return "0";
+  }
+  @if ($y % $x == 0) {
+    @return "1-#{$y / $x}";
+  }
+}
+
 
 // ------------------------------------------
 // Grid framework mixins
@@ -40,7 +50,13 @@ $gf-gutter-width: 30px !default;
   @each $nb-columns in $nb-columns-list {
     $list: ".#{$gf-prefix}#{bp-class($bp)}-1-#{$nb-columns}";
     @for $i from 2 through $nb-columns {
-      $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{$i}-#{$nb-columns}"
+      @if ($gf-smart-class-names and $nb-columns == $i) {
+        $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-1";
+      }
+      @if ($gf-smart-class-names and $nb-columns % $i == 0) {
+        $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{x-of-y-class($i, $nb-columns)}";
+      }
+      $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{$i}-#{$nb-columns}";
     }
     #{$list} {
       @extend %gf-col;
@@ -51,6 +67,12 @@ $gf-gutter-width: 30px !default;
 @mixin float-columns($nb-columns, $bp) {
   $list: ".#{$gf-prefix}#{bp-class($bp)}-1-#{$nb-columns}";
   @for $i from 2 through $nb-columns {
+    @if ($gf-smart-class-names and $nb-columns == $i) {
+      $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-1";
+    }
+    @if ($gf-smart-class-names and $nb-columns % $i == 0) {
+      $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{x-of-y-class($i, $nb-columns)}";
+    }
     $list: "#{$list}, .#{$gf-prefix}#{bp-class($bp)}-#{$i}-#{$nb-columns}";
   }
   #{$list} {
@@ -59,12 +81,26 @@ $gf-gutter-width: 30px !default;
 }
 
 @mixin make-column($index, $nb-columns, $bp) {
+  @if ($gf-smart-class-names and $nb-columns == $index) {
+    .#{$gf-prefix}#{bp-class($bp)}-1 {
+      width: percentage(1);
+    }
+  } @elseif ($gf-smart-class-names and $index > 1 and $nb-columns % $index == 0) {
+    .#{$gf-prefix}#{bp-class($bp)}-#{x-of-y-class($index, $nb-columns)} {
+      width: percentage($index / $nb-columns);
+    }
+  }
   .#{$gf-prefix}#{bp-class($bp)}-#{$index}-#{$nb-columns} {
     width: percentage($index / $nb-columns);
   }
 }
 
 @mixin make-column-offset($index, $nb-columns, $bp) {
+  @if ($gf-smart-class-names and $index > 1 and $nb-columns % $index == 0) {
+    .#{$gf-prefix}-offset#{bp-class($bp)}-#{x-of-y-class($index, $nb-columns)} {
+      margin-left: percentage($index / $nb-columns);
+    }
+  }
   .#{$gf-prefix}-offset#{bp-class($bp)}-#{$index}-#{$nb-columns} {
     margin-left: percentage($index / $nb-columns);
   }
@@ -76,6 +112,11 @@ $gf-gutter-width: 30px !default;
       left: auto;
     }
   } @else {
+    @if ($gf-smart-class-names and $index > 1 and $nb-columns % $index == 0) {
+      .#{$gf-prefix}-push#{bp-class($bp)}-#{x-of-y-class($index, $nb-columns)} {
+        left: percentage($index / $nb-columns);
+      }
+    }
     .#{$gf-prefix}-push#{bp-class($bp)}-#{$index}-#{$nb-columns} {
       left: percentage($index / $nb-columns);
     }
@@ -88,6 +129,11 @@ $gf-gutter-width: 30px !default;
       right: auto;
     }
   } @else {
+    @if ($gf-smart-class-names and $index > 1 and $nb-columns % $index == 0) {
+      .#{$gf-prefix}-pull#{bp-class($bp)}-#{x-of-y-class($index, $nb-columns)} {
+        right: percentage($index / $nb-columns);
+      }
+    }
     .#{$gf-prefix}-pull#{bp-class($bp)}-#{$index}-#{$nb-columns} {
       right: percentage($index / $nb-columns);
     }
@@ -95,7 +141,7 @@ $gf-gutter-width: 30px !default;
 }
 
 @mixin loop-columns($nb-columns, $bp, $options) {
-  @for $i from 0 through $nb-columns {
+  @for $i from 0 through $nb-columns - 1 {
     @if ($i > 0) {
       @include make-column($i, $nb-columns, $bp);
     }
@@ -112,6 +158,7 @@ $gf-gutter-width: 30px !default;
       }
     }
   }
+  @include make-column($nb-columns, $nb-columns, $bp);
 }
 
 // Create grid for specific class
