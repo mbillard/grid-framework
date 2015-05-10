@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+$gf-prefix: 'pure-u';
+$gf-row-prefix: 'pure-g';
+$gf-gutter-width: 0;
+$gf-smart-class-names: true;
+
+@import "../src/grid-framework";
+
+// ----------------------
+// Grid system
+// ----------------------
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@include make-rows;
+
+// Grid
+//
+// Columns, offsets, pushes, and pulls
+
+@include make-grid(5 24, '', '');
+
+@media (min-width: 568px) {
+  @include make-grid(5 24, 'sm', '');
+}
+
+@media (min-width: 768px) {
+  @include make-grid(5 24, 'md', '');
+}
+
+@media (min-width: 1024px) {
+  @include make-grid(5 24, 'lg', '');
+}
+
+@media (min-width: 1280px) {
+  @include make-grid(5 24, 'xl', '');
+}

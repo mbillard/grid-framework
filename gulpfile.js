@@ -8,3 +8,9 @@ gulp.task('sass', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'));
 });
+
+gulp.task('examples', function () {
+  gulp.src('./examples/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./examples'));
+});
