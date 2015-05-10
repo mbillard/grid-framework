@@ -1,13 +1,7 @@
-@import "mixins";
-
-$breakpoint-xs: 480px !default;
-$breakpoint-sm: 768px !default;
-$breakpoint-md: 992px !default;
-$breakpoint-lg: 1200px !default;
 $grid-gutter-width: 30px;
 
 // ------------------------------------------
-// Grid framework mixins
+// Grid framework extendable classes
 // ------------------------------------------
 
 %col {
@@ -18,6 +12,30 @@ $grid-gutter-width: 30px;
   padding-left:  ($grid-gutter-width / 2);
   padding-right: ($grid-gutter-width / 2);
 }
+
+%col-float-xs {
+  float: left;
+}
+@media (min-width: $breakpoint-sm) {
+  %col-float-sm {
+    float: left;
+  }
+}
+@media (min-width: $breakpoint-md) {
+  %col-float-md {
+    float: left;
+  }
+}
+@media (min-width: $breakpoint-lg) {
+  %col-float-lg {
+    float: left;
+  }
+}
+
+
+// ------------------------------------------
+// Grid framework mixins
+// ------------------------------------------
 
 @mixin make-generic-columns($nb-columns-list, $breakpoints) {
   @each $nb-columns in $nb-columns-list {
@@ -33,14 +51,13 @@ $grid-gutter-width: 30px;
   }
 }
 
-
 @mixin float-grid-columns($nb-columns, $bp) {
   $list: ".col-#{$bp}-1-#{$nb-columns}";
   @for $i from 2 through $nb-columns {
     $list: "#{$list}, .col-#{$bp}-#{$i}-#{$nb-columns}";
   }
   #{$list} {
-   float: left;
+    @extend %col-float-#{$bp};
   }
 }
 
@@ -83,7 +100,6 @@ $grid-gutter-width: 30px;
   }
 }
 
-
 // Create grid for specific class
 @mixin make-grid($nb-columns-list, $bp) {
   @include make-generic-columns($nb-columns-list, $bp);
@@ -97,69 +113,19 @@ $grid-gutter-width: 30px;
   }
 }
 
-
 // Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width) {
   margin-left:  ($gutter / -2);
   margin-right: ($gutter / -2);
 
-  @include clearfix;
-}
-
-// ----------------------------------------
-// Semantic grid mixins
-// ----------------------------------------
-
-// @mixin make-column($span, $nb-columns, $size, $bp, $gutter: $grid-gutter-width) {
-//   position: relative;
-//   float: left;
-//   width: percentage(($span / $nb-columns));
-//   min-height: 1px;
-//   padding-left:  ($gutter / 2);
-//   padding-right: ($gutter / 2);
-
-//   @media (min-width: $bp) {
-//     float: left;
-//     width: percentage(($span / $nb-columns));
-//   }
-// }
-// @mixin make-xs-column-offset($columns) {
-//   margin-left: percentage(($columns / $grid-columns));
-// }
-// @mixin make-xs-column-push($columns) {
-//   left: percentage(($columns / $grid-columns));
-// }
-// @mixin make-xs-column-pull($columns) {
-//   right: percentage(($columns / $grid-columns));
-// }
-
-// ----------------------
-// Grid system
-// ----------------------
-
-// Row
-//
-// Rows contain and clear the floats of your columns.
-
-.row {
-  @include make-row;
-}
-
-
-// Grid
-//
-// Columns, offsets, pushes, and pulls
-
-@include make-grid(5 12, 'xs');
-
-@media (min-width: $breakpoint-sm) {
-  @include make-grid(5 12 24, 'sm');
-}
-
-@media (min-width: $breakpoint-md) {
-  @include make-grid(24, 'md');
-}
-
-@media (min-width: $breakpoint-lg) {
-  @include make-grid(24, 'lg');
+  // micro clearfix by Nicolas Gallagher
+  // http://nicolasgallagher.com/micro-clearfix-hack/
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }

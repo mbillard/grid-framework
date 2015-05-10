@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+@import "../_sass/variables";
+@import "grid-framework";
+
+.row {
+  @include make-row;
+}
+
+@include make-grid(3, 'xs');
+
+@media (min-width: $breakpoint-sm) {
+  @include make-grid(5 6 7, 'sm');
+}
+
+@media (min-width: $breakpoint-md) {
+  @include make-grid(10 12 13, 'md');
+}
+
+@media (min-width: $breakpoint-lg) {
+  @include make-grid(24, 'lg');
+}
