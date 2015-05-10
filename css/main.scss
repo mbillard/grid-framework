@@ -47,7 +47,7 @@ body {
 
 .breakpoints {
   position: fixed;
-  bottom: 0;
+  bottom: 0.5rem;
   left: 0;
   right: 0;
 
@@ -62,11 +62,11 @@ body {
 .breakpoint {
   display: none;
   font-weight: bold;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 
-  background-color: #dfebe6;
-  border: solid 1px #83af9b;
+  background-color: #f9cdad;
+  border: solid 1px #ab6d40;
 }
 
 .show-xs,
