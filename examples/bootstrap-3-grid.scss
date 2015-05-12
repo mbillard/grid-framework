@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+
+@import "../src/grid-framework";
+
+// ----------------------
+// Grid system
+// ----------------------
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@include make-rows;
+
+// Grid
+//
+// Columns, offsets, pushes, and pulls
+
+@include make-grid(12, 'xs', 'offset' 'push' 'pull');
+
+@media (min-width: $breakpoint-sm) {
+  @include make-grid(12, 'sm', 'offset' 'push' 'pull');
+}
+
+@media (min-width: $breakpoint-md) {
+  @include make-grid(12, 'md', 'offset' 'push' 'pull');
+}
+
+@media (min-width: $breakpoint-lg) {
+  @include make-grid(12, 'lg', 'offset' 'push' 'pull');
+}
