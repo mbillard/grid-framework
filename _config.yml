@@ -5,8 +5,8 @@ description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "/grid-framework" # use `jekyll serve --baseurl ''` in development
-url: "http://mbillard.com/grid-framework" # the base hostname & protocol for your site
+baseurl: "" # use `jekyll serve --baseurl ''` in development
+url: "http://www.gridframework.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
