@@ -2,7 +2,7 @@
 
 A highly customizable responsive grid framework.
 
-Grid Framework let's you build the grid system that you want. It generates what you need and nothing else. It can also generate some popular grids like Bootstrap and Pure.
+Grid Framework lets you build the grid system that you want. It generates what you need and nothing else. It can also generate some popular grids like Bootstrap and Pure.
 
 
 ## Installation

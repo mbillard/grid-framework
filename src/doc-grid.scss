@@ -17,11 +17,11 @@
 @include make-grid(3, '', '');
 
 @media (min-width: $breakpoint-sm) {
-  @include make-grid(5 6 7, 'sm', 'offset' 'push' 'pull');
+  @include make-grid(5 6, 'sm', 'offset' 'push' 'pull');
 }
 
 @media (min-width: $breakpoint-md) {
-  @include make-grid(10 12 13, 'md', 'offset' 'push' 'pull');
+  @include make-grid(10 12, 'md', 'offset' 'push' 'pull');
 }
 
 @media (min-width: $breakpoint-lg) {

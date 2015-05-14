@@ -5,6 +5,7 @@
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "variables";
+@import "normalize";
 @import "syntax-highlighting";
 
 * {
@@ -20,6 +21,15 @@ body {
   font-size: 16px;
   background-color: #fafafa;
   font-family: "Open Sans", sans-serif;
+}
+
+p {
+  margin-top: 0;
+}
+
+section {
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .container {
@@ -50,7 +60,7 @@ body {
   margin-bottom: 1rem;
 }
 
-[class*=col-] {
+.row-demo [class*=col-] {
   font-family: "Source Code Pro", monospace;
   border: solid 1px #fe4365;
   background-color: #fc9d9a;
@@ -59,17 +69,16 @@ body {
 
   white-space: nowrap;
   overflow: hidden;
+}
 
-  .row-gutter & {
-    background: 0;
-    border: 0;
-    padding: 0;
+.row-demo.row-gutter [class*=col-] {
+  background: 0;
+  border: 0;
 
-    .inner {
-      border: solid 1px #fe4365;
-      background-color: #fc9d9a;
-      padding: 0.5rem;
-    }
+  .inner {
+    border: solid 1px #fe4365;
+    background-color: #fc9d9a;
+    padding: 0.5rem;
   }
 }
 
@@ -134,5 +143,50 @@ body {
   }
   .show-lg {
     display: inherit;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hero {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background: #FE4365;
+  color: #fff;
+}
+
+.hero-title {
+  margin-top: 0;
+}
+
+.hero-lead {
+  font-size: 1.25em;
+}
+
+.sidekick-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+.section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.subsection-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 1em;
+
+  code {
+    background: #ddd;
+    border: solid 1px #999;
+    padding: 0.1em 0.2em;
+    margin: 0 0.1em;
+    font-size: 0.8em;
   }
 }

@@ -9,28 +9,87 @@ layout: default
   <span class="breakpoint breakpoint-lg">lg</span>
 </div>
 
+<div class="hero text-center">
+  <h1 class="hero-title">{{ site.title }}</h1>
+  <p class="hero-lead">{{ site.tagline }}</p>
+  <iframe src="https://ghbtns.com/github-btn.html?user=mbillard&repo=grid-framework&type=star&count=false&size=large" frameborder="0" scrolling="0" width="80px" height="30px"></iframe>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row row-gutter">
+      <div class="col-sm-3-6">
+        <div class="sidekick">
+          <p class="sidekick-title">Your grid</p>
+          <p>Generate exactly the grid that you want. Choose the number of columns, the features and the breakpoints for your website.</p>
+        </div>
+      </div>
+      <div class="col-sm-3-6">
+        <div class="sidekick">
+          <p class="sidekick-title">Lightweight</p>
+          <p>Only as big as you need it to be. From 500B up to 12KB for a fully responsive, multi-breakpoint grid with the features you expect.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="container">
-  <header class="project-header">
-    <h1 class="project-title">{{ site.title }}</h1>
-    <p class="project-tagline">{{ site.tagline }}</p>
-  </header>
+  <div class="section-title">Some examples</div>
 
   <!-- xs -->
 
-  {% highlight css %}
+  {% highlight scss %}
 @include make-grid(3, 'xs');
   {% endhighlight %}
 
-  <div class="row">
+  <p>3 columns on the smallest screens</p>
+
+  <div class="row row-demo">
     <div class="col-xs-1-3">.col-xs-1-3</div>
     <div class="col-xs-2-3">.col-xs-2-3</div>
   </div>
 
-  <div class="row">
+  <div class="row row-demo">
     <div class="col-xs-3-3">.col-xs-3-3</div>
   </div>
 
+  <!-- sm -->
+  <div class="subsection-title">Define your own breakpoints</div>
+
+  {% highlight scss %}
+@media (min-width: $breakpoint-sm) {
+  @include make-grid(6, 'sm');
+}
+  {% endhighlight %}
+
+  <div class="row row-demo">
+    <div class="col-sm-1-6">.col-sm-1-6</div>
+    <div class="col-sm-5-6">.col-sm-5-6</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-sm-2-6">.col-sm-2-6</div>
+    <div class="col-sm-4-6">.col-sm-4-6</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-sm-3-6">.col-sm-3-6</div>
+    <div class="col-sm-3-6">.col-sm-3-6</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-sm-2-6">.col-sm-2-6</div>
+    <div class="col-sm-2-6">.col-sm-2-6</div>
+    <div class="col-sm-2-6">.col-sm-2-6</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-sm-6-6">.col-sm-6-6</div>
+  </div>
+
   <!-- gutter -->
+  <div class="subsection-title">With gutters</div>
 
   {% highlight html %}
 <div class="row row-gutter">
@@ -40,232 +99,17 @@ layout: default
 </div>
   {% endhighlight %}
 
-  <div class="row row-gutter">
+  <div class="row row-gutter row-demo">
     <div class="col-xs-1-3"><div class="inner">.col-xs-1-3</div></div>
     <div class="col-xs-1-3"><div class="inner">.col-xs-1-3</div></div>
     <div class="col-xs-1-3"><div class="inner">.col-xs-1-3</div></div>
-  </div>
-
-  <!-- sm -->
-
-  {% highlight css %}
-@media (min-width: $breakpoint-sm) {
-  @include make-grid(5 6, 'sm');
-}
-  {% endhighlight %}
-
-  <div class="row">
-    <div class="col-sm-1-5">.col-sm-1-5</div>
-    <div class="col-sm-4-5">.col-sm-4-5</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2-5">.col-sm-2-5</div>
-    <div class="col-sm-3-5">.col-sm-3-5</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2-5">.col-sm-2-5</div>
-    <div class="col-sm-1-5">.col-sm-1-5</div>
-    <div class="col-sm-2-5">.col-sm-2-5</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-5-5">.col-sm-5-5</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-1-6">.col-sm-1-6</div>
-    <div class="col-sm-5-6">.col-sm-5-6</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2-6">.col-sm-2-6</div>
-    <div class="col-sm-4-6">.col-sm-4-6</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-3-6">.col-sm-3-6</div>
-    <div class="col-sm-3-6">.col-sm-3-6</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2-6">.col-sm-2-6</div>
-    <div class="col-sm-2-6">.col-sm-2-6</div>
-    <div class="col-sm-2-6">.col-sm-2-6</div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6-6">.col-sm-6-6</div>
-  </div>
-
-  <!-- md -->
-
-  {% highlight css %}
-@media (min-width: $breakpoint-md) {
-  @include make-grid(10 12, 'md');
-}
-  {% endhighlight %}
-
-  <div class="row">
-    <div class="col-md-1-10">.col-md-1-10</div>
-    <div class="col-md-9-10">.col-md-9-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2-10">.col-md-2-10</div>
-    <div class="col-md-8-10">.col-md-8-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3-10">.col-md-3-10</div>
-    <div class="col-md-7-10">.col-md-7-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4-10">.col-md-4-10</div>
-    <div class="col-md-6-10">.col-md-6-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5-10">.col-md-5-10</div>
-    <div class="col-md-5-10">.col-md-5-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-1-10">.col-md-1-10</div>
-    <div class="col-md-2-10">.col-md-2-10</div>
-    <div class="col-md-3-10">.col-md-3-10</div>
-    <div class="col-md-4-10">.col-md-4-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-10-10">.col-md-10-10</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-1-12">.col-md-1-12</div>
-    <div class="col-md-11-12">.col-md-11-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2-12">.col-md-2-12</div>
-    <div class="col-md-10-12">.col-md-10-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3-12">.col-md-3-12</div>
-    <div class="col-md-9-12">.col-md-9-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4-12">.col-md-4-12</div>
-    <div class="col-md-8-12">.col-md-8-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-5-12">.col-md-5-12</div>
-    <div class="col-md-7-12">.col-md-7-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6-12">.col-md-6-12</div>
-    <div class="col-md-6-12">.col-md-6-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2-12">.col-md-2-12</div>
-    <div class="col-md-6-12">.col-md-6-12</div>
-    <div class="col-md-4-12">.col-md-4-12</div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12-12">.col-md-12-12</div>
-  </div>
-
-  <!-- lg -->
-
-  {% highlight css %}
-@media (min-width: $breakpoint-lg) {
-  @include make-grid(10 24, 'lg');
-}
-  {% endhighlight %}
-
-  <div class="row">
-    <div class="col-lg-1-24">.col-lg-1-24</div>
-    <div class="col-lg-23-24">.col-lg-23-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2-24">.col-lg-2-24</div>
-    <div class="col-lg-22-24">.col-lg-22-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3-24">.col-lg-3-24</div>
-    <div class="col-lg-21-24">.col-lg-21-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4-24">.col-lg-4-24</div>
-    <div class="col-lg-20-24">.col-lg-20-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-5-24">.col-lg-5-24</div>
-    <div class="col-lg-19-24">.col-lg-19-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6-24">.col-lg-6-24</div>
-    <div class="col-lg-18-24">.col-lg-18-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-7-24">.col-lg-7-24</div>
-    <div class="col-lg-17-24">.col-lg-17-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-8-24">.col-lg-8-24</div>
-    <div class="col-lg-16-24">.col-lg-16-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-9-24">.col-lg-9-24</div>
-    <div class="col-lg-15-24">.col-lg-15-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-10-24">.col-lg-10-24</div>
-    <div class="col-lg-14-24">.col-lg-14-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-11-24">.col-lg-11-24</div>
-    <div class="col-lg-13-24">.col-lg-13-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-12-24">.col-lg-12-24</div>
-    <div class="col-lg-12-24">.col-lg-12-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-1-24">.col-lg-1-24</div>
-    <div class="col-lg-2-24">.col-lg-2-24</div>
-    <div class="col-lg-3-24">.col-lg-3-24</div>
-    <div class="col-lg-6-24">.col-lg-6-24</div>
-    <div class="col-lg-12-24">.col-lg-12-24</div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-24-24">.col-lg-24-24</div>
   </div>
 
   <!-- all -->
+  <div class="subsection-title">Completely responsive and configurable</div>
+  <p>(resize your window to see the grid adapt from `xs` screens to `lg` screens)</p>
 
-  {% highlight css %}
+  {% highlight scss %}
 @include make-grid(3, 'xs');
 
 @media (min-width: $breakpoint-sm) {
@@ -283,216 +127,155 @@ layout: default
 
   {% highlight html %}
 <div class="row">
-  <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24"&gt;</div>
+  <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24"></div>
   ...
 </div>
   {% endhighlight %}
 
-  <div class="row">
+  <div class="row row-demo">
+    {% for i in (1..24) %}
     <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
       <span class="show-xs">xs</span>
       <span class="show-sm">sm</span>
       <span class="show-md">md</span>
       <span class="show-lg">lg</span>
     </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
-    <div class="col-xs-1-3 col-sm-1-6 col-md-1-12 col-lg-1-24">
-      <span class="show-xs">xs</span>
-      <span class="show-sm">sm</span>
-      <span class="show-md">md</span>
-      <span class="show-lg">lg</span>
-    </div>
+    {% endfor %}
   </div>
 
-  <!-- sm 7 -->
+  <!-- no prefix -->
+  <div class="subsection-title">Prefer without a prefix? No problem:</div>
 
-  {% highlight css %}
-@media (min-width: $breakpoint-sm) {
-  @include make-grid(7, 'sm');
-}
+  {% highlight scss %}
+@include make-grid(12, '');
+// .col-1-12, .col-2-12, etc.
   {% endhighlight %}
 
-  <div class="row">
-    <div class="col-sm-1-7">.col-sm-1-7</div>
-    <div class="col-sm-6-7">.col-sm-6-7</div>
-  </div>
+  <!-- offset, push & pull -->
+  <div class="subsection-title">Want <em>offset</em>, <em>push</em> and <em>pull</em>? As you wish:</div>
 
-  <div class="row">
-    <div class="col-sm-2-7">.col-sm-2-7</div>
-    <div class="col-sm-5-7">.col-sm-5-7</div>
-  </div>
+  {% highlight scss %}
+@include make-grid(12, 'sm', 'offset' 'push' 'pull');
+// .col-offset-sm-3-12, .col-push-sm-4-12, .col-pull-sm-5-12
 
-  <div class="row">
-    <div class="col-sm-3-7">.col-sm-3-7</div>
-    <div class="col-sm-4-7">.col-sm-4-7</div>
-  </div>
-
-  <!-- md 13 -->
-
-  {% highlight css %}
-@media (min-width: $breakpoint-md) {
-  @include make-grid(13, 'md');
-}
+// offset comes by default, use an empty string to remove it
+@include make-grid(12, 'sm', '');
   {% endhighlight %}
 
-  <div class="row">
-    <div class="col-md-1-13">.col-md-1-13</div>
-    <div class="col-md-12-13">.col-md-12-13</div>
+  <div class="row row-demo">
+    <div class="col-md-4-12 col-push-md-8-12">.col-md-4-12.col-push-md-8-12</div>
+    <div class="col-md-8-12 col-pull-md-4-12">.col-md-8-12.col-pull-md-4-12</div>
   </div>
 
-  <div class="row">
-    <div class="col-md-2-13">.col-md-2-13</div>
-    <div class="col-md-11-13">.col-md-11-13</div>
+  <div class="row row-demo">
+    <div class="col-md-5-12 col-offset-md-1-12">.col-md-5-12.col-offset-md-1-12</div>
+    <div class="col-md-5-12 col-offset-md-1-12">.col-md-5-12.col-offset-md-1-12</div>
   </div>
 
-  <div class="row">
-    <div class="col-md-3-13">.col-md-3-13</div>
-    <div class="col-md-10-13">.col-md-10-13</div>
+  <!-- smart class names -->
+  <div class="subsection-title">Prefer <code>1-2</code> over <code>6-12</code>? Enable smart class names:</div>
+
+  {% highlight scss %}
+$gf-smart-class-names: true; // before the import
+
+@import "grid-framework";
+
+@include make-grid(12, 'md');
+// .col-md-1-2, .col-md-1-3, .col-md-1-4, .col-md-1
+  {% endhighlight %}
+
+  <!-- prefix -->
+  <div class="subsection-title">Nostalgic about Bootstrap 2's <code>span</code> prefix? Ok!</div>
+
+  {% highlight scss %}
+$gf-prefix: 'span'; // before the import
+
+@import "grid-framework";
+
+@include make-grid(12, '');
+// .span-1-12, .span-2-12, .span-3-12
+  {% endhighlight %}
+
+  <!-- md -->
+  <div class="subsection-title">Define multiple grids at once</div>
+
+  {% highlight scss %}
+@include make-grid(10 12, 'md');
+  {% endhighlight %}
+
+  <div class="row row-demo">
+    <div class="col-md-1-10">.col-md-1-10</div>
+    <div class="col-md-9-10">.col-md-9-10</div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4-13">.col-md-4-13</div>
-    <div class="col-md-9-13">.col-md-9-13</div>
+  <div class="row row-demo">
+    <div class="col-md-2-10">.col-md-2-10</div>
+    <div class="col-md-8-10">.col-md-8-10</div>
   </div>
 
-  <div class="row">
-    <div class="col-md-5-13">.col-md-5-13</div>
-    <div class="col-md-8-13">.col-md-8-13</div>
+  <div class="row row-demo">
+    <div class="col-md-3-10">.col-md-3-10</div>
+    <div class="col-md-7-10">.col-md-7-10</div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6-13">.col-md-6-13</div>
-    <div class="col-md-7-13">.col-md-7-13</div>
+  <div class="row row-demo">
+    <div class="col-md-4-10">.col-md-4-10</div>
+    <div class="col-md-6-10">.col-md-6-10</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-5-10">.col-md-5-10</div>
+    <div class="col-md-5-10">.col-md-5-10</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-1-10">.col-md-1-10</div>
+    <div class="col-md-2-10">.col-md-2-10</div>
+    <div class="col-md-3-10">.col-md-3-10</div>
+    <div class="col-md-4-10">.col-md-4-10</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-10-10">.col-md-10-10</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-1-12">.col-md-1-12</div>
+    <div class="col-md-11-12">.col-md-11-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-2-12">.col-md-2-12</div>
+    <div class="col-md-10-12">.col-md-10-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-3-12">.col-md-3-12</div>
+    <div class="col-md-9-12">.col-md-9-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-4-12">.col-md-4-12</div>
+    <div class="col-md-8-12">.col-md-8-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-5-12">.col-md-5-12</div>
+    <div class="col-md-7-12">.col-md-7-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-6-12">.col-md-6-12</div>
+    <div class="col-md-6-12">.col-md-6-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-2-12">.col-md-2-12</div>
+    <div class="col-md-6-12">.col-md-6-12</div>
+    <div class="col-md-4-12">.col-md-4-12</div>
+  </div>
+
+  <div class="row row-demo">
+    <div class="col-md-12-12">.col-md-12-12</div>
   </div>
 </div>
