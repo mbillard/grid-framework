@@ -1,8 +1,8 @@
 # Site settings
 title: Grid Framework
 tagline: A highly customizable responsive grid framework
-baseurl: "" # use `jekyll serve --baseurl ''` in development
-url: "http://www.gridframework.com" # the base hostname & protocol for your site
+baseurl: "/grid-framework" # use `jekyll serve --baseurl ''` in development
+url: "http://mbillard.github.io/grid-framework" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
